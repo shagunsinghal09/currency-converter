@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xe Currency Converter - Live Exchange Rates Today</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>xe</h1>
+                </div>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="#" class="nav-link">Personal</a></li>
+                        <li><a href="#" class="nav-link">Business</a></li>
+                        <li><a href="#" class="nav-link">Send money</a></li>
+                        <li><a href="#" class="nav-link">Money transfers</a></li>
+                        <li><a href="#" class="nav-link">Converter</a></li>
+                        <li><a href="#" class="nav-link">Tools</a></li>
+                        <li><a href="#" class="nav-link">Resources</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <a href="#" class="login-link">Help/Login/Register</a>
+                    <button class="menu-toggle">Toggle menu</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Xe Currency Converter</h1>
+                <p class="hero-subtitle">Check live foreign currency exchange rates</p>
+                
+                <!-- Currency Converter -->
+                <div class="converter-card">
+                    <div class="converter-tabs">
+                        <button class="tab-btn active">Convert</button>
+                        <button class="tab-btn">Send</button>
+                        <button class="tab-btn">Charts</button>
+                        <button class="tab-btn">Alerts</button>
+                    </div>
+                    
+                    <form class="converter-form" id="converterForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="amount">Amount</label>
+                                <input type="text" id="amount" value="1.00" class="amount-input">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="fromCurrency">From</label>
+                                <select id="fromCurrency" class="currency-select">
+                                    <option value="USD" selected>USD - US Dollar</option>
+                                    <option value="EUR">EUR - Euro</option>
+                                    <option value="GBP">GBP - British Pound</option>
+                                    <option value="JPY">JPY - Japanese Yen</option>
+                                    <option value="CAD">CAD - Canadian Dollar</option>
+                                    <option value="AUD">AUD - Australian Dollar</option>
+                                    <option value="CHF">CHF - Swiss Franc</option>
+                                    <option value="CNY">CNY - Chinese Yuan</option>
+                                </select>
+                            </div>
+                            
+                            <button type="button" class="swap-btn" id="swapBtn">⇄</button>
+                            
+                            <div class="form-group">
+                                <label for="toCurrency">To</label>
+                                <select id="toCurrency" class="currency-select">
+                                    <option value="EUR" selected>EUR - Euro</option>
+                                    <option value="USD">USD - US Dollar</option>
+                                    <option value="GBP">GBP - British Pound</option>
+                                    <option value="JPY">JPY - Japanese Yen</option>
+                                    <option value="CAD">CAD - Canadian Dollar</option>
+                                    <option value="AUD">AUD - Australian Dollar</option>
+                                    <option value="CHF">CHF - Swiss Franc</option>
+                                    <option value="CNY">CNY - Chinese Yuan</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="promo-section">
+                            <div class="promo-text">
+                                <h3>Looking to make large transfers?</h3>
+                                <p>We can beat competitor rates</p>
+                            </div>
+                            <button type="button" class="book-call-btn">Book a call</button>
+                        </div>
+                        
+                        <button type="submit" class="convert-btn">Convert</button>
+                    </form>
+                    
+                    <div class="converter-result" id="converterResult">
+                        <div class="result-content"></div>
+                    </div>
+                    
+                    <p class="disclaimer">
+                        We use the mid-market rate for our Converter. This is for informational purposes only. You won't receive this rate when sending money. 
+                        <a href="#" class="login-link">Login to view send rates</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Exchange Rates -->
+    <section class="live-rates">
+        <div class="container">
+            <div class="section-header">
+                <h2>Live exchange rates</h2>
+                <p>Compare 100+ currencies in real time & find the right moment to transfer funds</p>
+            </div>
+            
+            <div class="rates-controls">
+                <label class="inverse-toggle">
+                    <input type="checkbox" id="inverseToggle">
+                    <span class="toggle-slider"></span>
+                    Inverse
+                </label>
+                <div class="rates-headers">
+                    <span>Amount</span>
+                    <span>Change (24h)</span>
+                    <span>Chart (24h)</span>
+                    <span>Edit</span>
+                </div>
+            </div>
+            
+            <div class="base-currency">
+                <div class="currency-flag">🇺🇸</div>
+                <span class="currency-name">US Dollar</span>
+                <span class="currency-amount">1</span>
+            </div>
+            
+            <div class="currency-rates" id="currencyRates">
+                <div class="currency-row" data-currency="EUR">
+                    <div class="currency-info">
+                        <div class="currency-flag">🇪🇺</div>
+                        <div class="currency-details">
+                            <span class="currency-name">Euro</span>
+                            <span class="currency-subtitle">Click to change base currency to EUR</span>
+                        </div>
+                    </div>
+                    <div class="currency-rate">0.86384</div>
+                    <div class="currency-change positive">+0.23%</div>
+                    <div class="currency-chart">📈</div>
+                    <button class="send-btn">Send</button>
+                </div>
+                
+                <div class="currency-row" data-currency="GBP">
+                    <div class="currency-info">
+                        <div class="currency-flag">🇬🇧</div>
+                        <div class="currency-details">
+                            <span class="currency-name">British Pound</span>
+                            <span class="currency-subtitle">Click to change base currency to GBP</span>
+                        </div>
+                    </div>
+                    <div class="currency-rate">0.74666</div>
+                    <div class="currency-change positive">+0.044%</div>
+                    <div class="currency-chart">📈</div>
+                    <button class="send-btn">Send</button>
+                </div>
+                
+                <div class="currency-row" data-currency="JPY">
+                    <div class="currency-info">
+                        <div class="currency-flag">🇯🇵</div>
+                        <div class="currency-details">
+                            <span class="currency-name">Japanese Yen</span>
+                            <span class="currency-subtitle">Click to change base currency to JPY</span>
+                        </div>
+                    </div>
+                    <div class="currency-rate">148.75</div>
+                    <div class="currency-change positive">+0.014%</div>
+                    <div class="currency-chart">📈</div>
+                    <button class="send-btn">Send</button>
+                </div>
+                
+                <div class="currency-row" data-currency="CAD">
+                    <div class="currency-info">
+                        <div class="currency-flag">🇨🇦</div>
+                        <div class="currency-details">
+                            <span class="currency-name">Canadian Dollar</span>
+                            <span class="currency-subtitle">Click to change base currency to CAD</span>
+                        </div>
+                    </div>
+                    <div class="currency-rate">1.3763</div>
+                    <div class="currency-change positive">+0.27%</div>
+                    <div class="currency-chart">📈</div>
+                    <button class="send-btn">Send</button>
+                </div>
+            </div>
+            
+            <button class="add-currency-btn">+ Add currency</button>
+            
+            <div class="last-updated">
+                <span class="update-icon">🕐</span>
+                Last updated Jul 17, 2025, 12:01 UTC
+            </div>
+        </div>
+    </section>
+
+    <!-- App Promotion -->
+    <section class="app-promo">
+        <div class="container">
+            <div class="app-content">
+                <div class="app-text">
+                    <h2>Manage your currencies on the go with the Xe app</h2>
+                    <p>It has everything you need for international money transfers — easy, secure, and low fees starting at $0.</p>
+                    <button class="download-btn">Download the app</button>
+                    <div class="qr-placeholder">
+                        <div class="qr-code">QR</div>
+                    </div>
+                </div>
+                <div class="app-mockup">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="app-interface">
+                                <div class="app-header">Welcome</div>
+                                <div class="app-chart">📊</div>
+                                <div class="app-buttons">
+                                    <button>Send money</button>
+                                    <button>Create alert</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Currency Tools -->
+    <section class="currency-tools">
+        <div class="container">
+            <div class="section-header">
+                <h2>Xe currency tools</h2>
+                <p>FX insights, advanced indicators, live news feeds & customizable dashboards</p>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">✈️</div>
+                    <h3>International transfers</h3>
+                    <p>Send money to 190 countries across 130 currencies. Enjoy flexible ways to send and receive money.</p>
+                    <a href="#" class="tool-link">Learn more</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">🔔</div>
+                    <h3>Rate alerts</h3>
+                    <p>Set free rate alerts for any currency pair. We'll notify you at your desired rate.</p>
+                    <a href="#" class="tool-link">Learn more</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">🕐</div>
+                    <h3>Historical currency rates</h3>
+                    <p>Analyze rate trends for any currency over a few days, weeks, months, or years. Get an automated currency feed through the Xe Currency Data API.</p>
+                    <a href="#" class="tool-link">Learn more</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">🧮</div>
+                    <h3>IBAN calculator</h3>
+                    <p>Search and validate your IBAN (International Bank Account Number) to make sure your transfer is sent to the right destination.</p>
+                    <a href="#" class="tool-link">Learn more</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">📧</div>
+                    <h3>Currency email updates</h3>
+                    <p>Get a daily analysis of markets, exchange rates, and news straight in your inbox.</p>
+                    <a href="#" class="tool-link">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Section -->
+    <section class="api-section">
+        <div class="container">
+            <div class="api-content">
+                <div class="api-text">
+                    <h2>Xe currency data API</h2>
+                    <h3>Providing commercial grade exchange rates to 300+ companies worldwide</h3>
+                    <h4>The world's most trusted source for currency data</h4>
+                    <p>Our exchange rate API offers real-time, accurate, and reliable data for hundreds of currencies. Xe's proprietary rates are sourced directly from financial data providers and reputable banks.</p>
+                    <button class="learn-more-btn">Learn more</button>
+                </div>
+                <div class="api-demo">
+                    <div class="api-tabs">
+                        <button class="api-tab active">API 01</button>
+                        <button class="api-tab">API 02</button>
+                        <button class="api-tab">API 03</button>
+                        <button class="api-tab">API 04</button>
+                    </div>
+                    <div class="code-block">
+                        <pre><code>GET https://xecdapi.xe.com/v1/convert_from
+
+{
+  "from": USD,
+  "to": {
+    "CAD": 1.260046,
+    "CHF": 0.933058,
+    "EUR": 0.806942,
+    "GBP": 0.719154,
+    [170 world currencies]
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="trusted-by">
+                <h3>Trusted by</h3>
+                <div class="brand-logos">
+                    <div class="brand-logo">Shopify</div>
+                    <div class="brand-logo">Clearbooks</div>
+                    <div class="brand-logo">Vistaprint</div>
+                    <div class="brand-logo">Xero</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>Xe is trusted by millions around the globe</h2>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <h4>I always come back to XE</h4>
+                    <p>always reliable and clear instructions</p>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <span class="author">Joyce</span>
+                </div>
+                
+                <div class="testimonial">
+                    <h4>Easy</h4>
+                    <p>Easy. Efficient. Effective. Excellent! Enjoyable.</p>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <span class="author">Ricardo V.</span>
+                </div>
+                
+                <div class="testimonial">
+                    <h4>Easy to navigate</h4>
+                    <p>Easy to navigate. Fast and efficient transfer. Knowledgeable staff when needed</p>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <span class="author">Ness</span>
+                </div>
+            </div>
+            
+            <div class="app-ratings">
+                <div class="rating-item">
+                    <div class="rating-logo">🍎</div>
+                    <div class="rating-text">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <span>4.8/5, 58.6k ratings</span>
+                    </div>
+                </div>
+                
+                <div class="rating-item">
+                    <div class="rating-logo">📱</div>
+                    <div class="rating-text">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <span>4.8/5, 221k ratings</span>
+                    </div>
+                </div>
+                
+                <div class="rating-item">
+                    <div class="rating-logo">⭐</div>
+                    <div class="rating-text">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <span>4.3/5, 69.5k ratings</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Section -->
+    <section class="business-section">
+        <div class="container">
+            <div class="business-content">
+                <div class="business-image">
+                    <div class="business-placeholder">Business Image</div>
+                </div>
+                <div class="business-text">
+                    <div class="business-icon">🏢</div>
+                    <h2>Xe for business</h2>
+                    <h3>Global business payments simplified.</h3>
+                    <p>Whether you need to make cross-border payments or FX risk management solutions, we've got you covered. Schedule international transfers across 130 currencies in 190+ countries.</p>
+                    <button class="business-btn">Business payments</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Send Money Destinations -->
+    <section class="destinations">
+        <div class="container">
+            <div class="section-header">
+                <h2>Send money destinations</h2>
+                <h3>Connecting the world</h3>
+            </div>
+            
+            <div class="destinations-grid">
+                <a href="#" class="destination-link">Send money to United Arab Emirates</a>
+                <a href="#" class="destination-link">Send money to Albania</a>
+                <a href="#" class="destination-link">Send money to Armenia</a>
+                <a href="#" class="destination-link">Send money to Argentina</a>
+                <a href="#" class="destination-link">Send money to Australia</a>
+                <a href="#" class="destination-link">Send money to Azerbaijan</a>
+                <a href="#" class="destination-link">Send money to Bosnia and Herzegovina</a>
+                <a href="#" class="destination-link">Send money to Belgium</a>
+                <a href="#" class="destination-link">Send money to Barbados</a>
+                <a href="#" class="destination-link">Send money to Bangladesh</a>
+                <a href="#" class="destination-link">Send money to Bulgaria</a>
+                <a href="#" class="destination-link">Send money to Bahrain</a>
+            </div>
+            
+            <button class="show-more-btn">Show more</button>
+        </div>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
